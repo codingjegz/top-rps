@@ -1,4 +1,4 @@
-const DEFAULT_LIFE = 4;
+const DEFAULT_LIFE = 5;
 const playerSelection = document.querySelectorAll("li");
 const player = document.querySelector("#player");
 const computer = document.querySelector("#computer");
@@ -14,23 +14,31 @@ setHealth(computerHealth, "c");
 playerSelection.forEach((el) => {
   el.addEventListener("click", function (e) {
     e.preventDefault();
+
     player.textContent = el.textContent;
     computer.textContent = computerChose();
-    console.log("PLAYER", playerCount);
 
     switch (compareDecision(player.textContent, computer.textContent)) {
       case "P":
         computerHealth.removeChild(
           document.querySelector("#c-" + computerCount)
         );
-        computerCount--;
         displayRoundWinner.textContent = "PLAYER WON";
+        computerCount--;
+        if (computerCount == 0) {
+          computerHealth.innerHTML = "";
+          result("PLAYER");
+        }
         break;
 
       case "C":
         playerHealth.removeChild(document.querySelector("#p-" + playerCount));
-        playerCount--;
         displayRoundWinner.textContent = "COMPUTER WON";
+        playerCount--;
+        if (playerCount == 0) {
+          playerHealth.innerHTML = "";
+          result("COMPUTER");
+        }
         break;
 
       default:
@@ -38,19 +46,22 @@ playerSelection.forEach((el) => {
         break;
     }
 
-    if (playerCount == -1) {
-      resetGame(playerHealth, "p");
-      resetGame(computerHealth, "c");
-      alert("COMPUTER WON");
+    if (playerCount == 0) {
+      playerHealth.innerHTML = "";
+      result("COMPUTER");
     }
-
-    if (computerCount == -1) {
-      resetGame(computerHealth, "c");
-      resetGame(playerHealth, "p");
-      alert("PLAYER WON");
+    if (computerCount == 0) {
+      computerHealth.innerHTML = "";
+      result("PLAYER");
     }
   });
 });
+
+function result(winner) {
+  resetGame(playerHealth, "p");
+  resetGame(computerHealth, "c");
+  alert(`END RESULT: ${winner}`);
+}
 
 function computerChose() {
   const selection = ["Rock", "Paper", "Scissor"];
@@ -81,11 +92,11 @@ function setHealth(element, identifier) {
 }
 
 function initializeLife(element, identifier) {
-  for (let i = 0; i < 5; i++) {
-    let heart = document.createElement("p");
-    heart.textContent = `${i}`;
-    heart.setAttribute("id", `${identifier}-${i}`);
-    element.appendChild(heart);
+  for (let i = 1; i < 6; i++) {
+    let circle = document.createElement("p");
+    circle.setAttribute("id", `${identifier}-${i}`);
+    circle.setAttribute("class", "circle");
+    element.appendChild(circle);
   }
 }
 

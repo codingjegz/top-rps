@@ -1,3 +1,7 @@
+:root {
+  background-color: #242424;
+  color: #f9f9f9;
+}
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -43,25 +47,34 @@
   */
   #root, #__next {
     isolation: isolate;
+    
   }
 
   ul {
     list-style: none;
   }
+  body {
+    position: relative;
+  }
 
   main {
     border: 1px solid;
-    max-width: 1024px;
+    border-radius: 1em;
     margin-inline: auto;
+    width: 100%;
+    max-width: 1024px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
   }
 
   header {
-    border: 1px pink;
+    padding: 1.5em;
     text-align: center;
   }
 
   section {
-    border: 1px solid blue;
     padding: 1em;
   }
 
@@ -69,16 +82,21 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
-    border: 1px solid red;
+    margin: 1em 0;
   }
 
   .player-computer__chosen {
     border: 1px solid green;
+    border-radius: 1em;
     display: grid;
     place-items: center;
+    margin-inline: 1em;
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .player__menu {
+    margin: 1em 0;
+  }
   .player__menu ul {
     display: grid;
     place-items: center;
@@ -102,3 +120,12 @@
     grid-template-columns: repeat(5, 1fr);
     width: 100%;
   }
+
+
+.circle {
+  width: 20px;
+  height: 20px;
+  background-color: yellow;
+  border-radius: 50%;
+  margin-top: 1em;
+}
