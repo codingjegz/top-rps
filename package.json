@@ -1,0 +1,24 @@
+{
+  "name": "top-rps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://codingjegz@github.com/codingjegz/top-rps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codingjegz/top-rps/issues"
+  },
+  "homepage": "https://github.com/codingjegz/top-rps#readme",
+  "dependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}
